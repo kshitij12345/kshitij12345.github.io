@@ -1,4 +1,135 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-04-29T15:36:36+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hacker’s Getaway</title><subtitle>Rough slate</subtitle><author><name>Kshiteej</name><email>kshitijkalambarkar@gmail.com</email></author><entry><title type="html">Gentle Introduction to Valgrind!</title><link href="http://localhost:4000/intro/2021/04/29/valgrind-intro.html" rel="alternate" type="text/html" title="Gentle Introduction to Valgrind!" /><published>2021-04-29T14:14:49+05:30</published><updated>2021-04-29T14:14:49+05:30</updated><id>http://localhost:4000/intro/2021/04/29/valgrind-intro</id><content type="html" xml:base="http://localhost:4000/intro/2021/04/29/valgrind-intro.html">&lt;h2 id=&quot;valgrind&quot;&gt;Valgrind&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-04-29T15:43:53+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hacker’s Getaway</title><subtitle>Rough slate</subtitle><author><name>Kshiteej</name><email>kshitijkalambarkar@gmail.com</email></author><entry><title type="html">Contributing to Open Source Software (OSS) (Slide Deck)</title><link href="http://localhost:4000/oss/2021/04/29/contributing-to-oss-slide.html" rel="alternate" type="text/html" title="Contributing to Open Source Software (OSS) (Slide Deck)" /><published>2021-04-29T14:14:49+05:30</published><updated>2021-04-29T14:14:49+05:30</updated><id>http://localhost:4000/oss/2021/04/29/contributing-to-oss-slide</id><content type="html" xml:base="http://localhost:4000/oss/2021/04/29/contributing-to-oss-slide.html">&lt;h4 id=&quot;slide-preview&quot;&gt;Slide Preview&lt;/h4&gt;
+
+&lt;p&gt;HackMD &lt;a href=&quot;https://hackmd.io/@kshiteejk/SJc65ipL_&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h4 id=&quot;contributing-to-open-source-software-oss&quot;&gt;Contributing to Open Source Software (OSS)&lt;/h4&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;who-am-i&quot;&gt;Who Am I?&lt;/h4&gt;
+
+&lt;p&gt;&lt;span style=&quot;font-size:0.75em;&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Software Engineer at Quansight (developing PyTorch)&lt;/li&gt;
+  &lt;li&gt;Contributed to PyTorch, MXNet, Chainer, etc.&lt;/li&gt;
+  &lt;li&gt;Previously Machine Learning Engineer (in NLP and CV)&lt;/li&gt;
+  &lt;li&gt;Not from CS background (only language university taught us was C 😔 )&lt;/li&gt;
+  &lt;li&gt;Learnt Python by wandering in the wild!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&amp;lt;/span&amp;gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;what-is-oss&quot;&gt;What is OSS?&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;brief-history&quot;&gt;Brief History&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Richard Stallman (pioneer)&lt;/li&gt;
+  &lt;li&gt;Sharing your recipe&lt;/li&gt;
+  &lt;li&gt;Imagine world without OSS 😨&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;does-anyone-even-use-it&quot;&gt;Does anyone even use it?&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Recent Mars Ingenuity Helicopter&lt;/li&gt;
+  &lt;li&gt;If you use Python&lt;/li&gt;
+  &lt;li&gt;If you are using any cloud service&lt;/li&gt;
+  &lt;li&gt;If you use Android&lt;/li&gt;
+  &lt;li&gt;If you use ….&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;why-should-i-spend-my-time&quot;&gt;Why should I spend my time?&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;People will use your code! 😁&lt;/li&gt;
+  &lt;li&gt;Learning 📜&lt;/li&gt;
+  &lt;li&gt;Ability to work in a team and interact! 🤝&lt;/li&gt;
+  &lt;li&gt;Meet new people! 👩‍💻&lt;/li&gt;
+  &lt;li&gt;Get introduced to new tools and technologies (debuggers, linters)🔧&lt;/li&gt;
+  &lt;li&gt;Might land a new job 💻&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;hopefully-you-are-interested-by-now-&quot;&gt;Hopefully you are interested by now 🤓&lt;/h4&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;start-slow&quot;&gt;Start Slow&lt;/h4&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;My experience&lt;/p&gt;
+
+&lt;p&gt;First Pytorch PR terrible 🤢&lt;/p&gt;
+
+&lt;p&gt;Took 9 months to get accepted!
+Lots of rookie mistakes!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Start Date&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/s7nRdXB.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;End Date 🎉&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/socFCiV.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;experience&quot;&gt;Experience&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Patience&lt;/li&gt;
+  &lt;li&gt;Lot of learning&lt;/li&gt;
+  &lt;li&gt;Got to interact with &lt;strong&gt;really&lt;/strong&gt; smart people&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;tips&quot;&gt;Tips&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;choosing-the-project-to-work-on&quot;&gt;Choosing the project to work on&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Personal Project that you really love&lt;/li&gt;
+  &lt;li&gt;Some library that you use a lot (eg. NumPy, pandas)&lt;/li&gt;
+  &lt;li&gt;Be sure to choose an active project&lt;/li&gt;
+  &lt;li&gt;Project with developer guide and good documentation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;things-to-remember&quot;&gt;Things to remember&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Ask for help! Nobody expects you to know everything&lt;/li&gt;
+  &lt;li&gt;Be polite, humble and &lt;strong&gt;patient&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;There is no stupid question!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;thank-you&quot;&gt;Thank You!&lt;/h4&gt;
+
+&lt;p&gt;Github Handle: kshitij12345
+LinkedIn: kshiteejkalambarkar&lt;/p&gt;</content><author><name>Kshiteej</name><email>kshitijkalambarkar@gmail.com</email></author><category term="oss" /><summary type="html">Slide Preview</summary></entry><entry><title type="html">Gentle Introduction to Valgrind!</title><link href="http://localhost:4000/intro/2021/04/29/valgrind-intro.html" rel="alternate" type="text/html" title="Gentle Introduction to Valgrind!" /><published>2021-04-29T14:14:49+05:30</published><updated>2021-04-29T14:14:49+05:30</updated><id>http://localhost:4000/intro/2021/04/29/valgrind-intro</id><content type="html" xml:base="http://localhost:4000/intro/2021/04/29/valgrind-intro.html">&lt;h2 id=&quot;valgrind&quot;&gt;Valgrind&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.valgrind.org/downloads/&quot;&gt;Valgrind&lt;/a&gt; is an useful tool if you are working with C/C++. It is a suite of multipurpose tools with varied functionality. It allows you to detect memory-leak, profile your code and more. One of the thing that it shines at is helping debugging trick memory bug.&lt;/p&gt;
 
 &lt;h3 id=&quot;how-does-it-work&quot;&gt;How does it work?&lt;/h3&gt;
