@@ -1,0 +1,7 @@
+---
+layout: post
+title:  "Intro post for testing!"
+date:   2021-04-29 12:26:49 +0530
+categories: intro
+---
+Finally I have a personal site?!
