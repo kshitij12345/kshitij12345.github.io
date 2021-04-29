@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-04-29T14:15:05+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hacker’s Getaway</title><subtitle>Rough slate</subtitle><entry><title type="html">Gentle Introduction to Valgrind!</title><link href="http://localhost:4000/intro/2021/04/29/valgrind-intro.html" rel="alternate" type="text/html" title="Gentle Introduction to Valgrind!" /><published>2021-04-29T14:14:49+05:30</published><updated>2021-04-29T14:14:49+05:30</updated><id>http://localhost:4000/intro/2021/04/29/valgrind-intro</id><content type="html" xml:base="http://localhost:4000/intro/2021/04/29/valgrind-intro.html">&lt;h2 id=&quot;valgrind&quot;&gt;Valgrind&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-04-29T14:32:03+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hacker’s Getaway</title><subtitle>Rough slate</subtitle><entry><title type="html">Gentle Introduction to Valgrind!</title><link href="http://localhost:4000/intro/2021/04/29/valgrind-intro.html" rel="alternate" type="text/html" title="Gentle Introduction to Valgrind!" /><published>2021-04-29T14:14:49+05:30</published><updated>2021-04-29T14:14:49+05:30</updated><id>http://localhost:4000/intro/2021/04/29/valgrind-intro</id><content type="html" xml:base="http://localhost:4000/intro/2021/04/29/valgrind-intro.html">&lt;h2 id=&quot;valgrind&quot;&gt;Valgrind&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.valgrind.org/downloads/&quot;&gt;Valgrind&lt;/a&gt; is an useful tool if you are working with C/C++. It is a suite of multipurpose tools with varied functionality. It allows you to detect memory-leak, profile your code and more. One of the thing that it shines at is helping debugging trick memory bug.&lt;/p&gt;
 
 &lt;h3 id=&quot;how-does-it-work&quot;&gt;How does it work?&lt;/h3&gt;
@@ -12,13 +12,13 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;example-program&quot;&gt;Example Program&lt;/h3&gt;
-&lt;pre&gt;&lt;code class=&quot;language-C++&quot;&gt;int main()
-{
-    auto x = new char[10];
-    delete x;
-    return 0;
-}
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;delete&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;This innocuous looking program is actually ill-formed. The reason being, with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new[]&lt;/code&gt; allocation the allocated memory should be freed with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;delete[]&lt;/code&gt;, with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;delete&lt;/code&gt; the behavior is undefined.&lt;/p&gt;
 

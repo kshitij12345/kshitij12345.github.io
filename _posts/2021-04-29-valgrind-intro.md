@@ -20,7 +20,7 @@ $conda install -c conda-forge valgrind
 ```
 
 ### Example Program
-```C++
+```cpp
 int main()
 {
     auto x = new char[10];
