@@ -4,4 +4,4 @@ title: About
 permalink: /about/
 ---
 
-TODO: Add something about me!
+Trying to learn new things!
