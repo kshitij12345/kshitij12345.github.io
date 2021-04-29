@@ -1,1 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-04-29T13:24:42+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Playing the game called life!</title><subtitle>Description goes here!</subtitle><entry><title type="html">Intro post for testing!</title><link href="http://localhost:4000/intro/2021/04/29/welcome.html" rel="alternate" type="text/html" title="Intro post for testing!" /><published>2021-04-29T12:26:49+05:30</published><updated>2021-04-29T12:26:49+05:30</updated><id>http://localhost:4000/intro/2021/04/29/welcome</id><content type="html" xml:base="http://localhost:4000/intro/2021/04/29/welcome.html">&lt;p&gt;Finally I have a personal site?!&lt;/p&gt;</content><author><name></name></author><category term="intro" /><summary type="html">Finally I have a personal site?!</summary></entry></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-04-29T14:15:05+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hacker’s Getaway</title><subtitle>Rough slate</subtitle><entry><title type="html">Gentle Introduction to Valgrind!</title><link href="http://localhost:4000/intro/2021/04/29/valgrind-intro.html" rel="alternate" type="text/html" title="Gentle Introduction to Valgrind!" /><published>2021-04-29T14:14:49+05:30</published><updated>2021-04-29T14:14:49+05:30</updated><id>http://localhost:4000/intro/2021/04/29/valgrind-intro</id><content type="html" xml:base="http://localhost:4000/intro/2021/04/29/valgrind-intro.html">&lt;h2 id=&quot;valgrind&quot;&gt;Valgrind&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.valgrind.org/downloads/&quot;&gt;Valgrind&lt;/a&gt; is an useful tool if you are working with C/C++. It is a suite of multipurpose tools with varied functionality. It allows you to detect memory-leak, profile your code and more. One of the thing that it shines at is helping debugging trick memory bug.&lt;/p&gt;
+
+&lt;h3 id=&quot;how-does-it-work&quot;&gt;How does it work?&lt;/h3&gt;
+&lt;p&gt;It is worth noting that Valgrind is language agnostic and works with all languages, compiled or interpreted. Since Valgrind consumes a binary, it does not care about which language it came from. Valgrind is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;non-intrusive&lt;/code&gt; in terms of adding an instrumentation code. You need not update your codebase for it to work with Valgrind. The way it manages to do this is by providing a virtual core for the binary to run on. This way it can also figure out statistics like number of number native instructions executed.&lt;/p&gt;
+
+&lt;h3 id=&quot;installing-valgrind&quot;&gt;Installing Valgrind&lt;/h3&gt;
+&lt;p&gt;Let’s start with setuping up a playground environment with Valgrind&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$conda&lt;/span&gt; create &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; valgrind-test-env
+&lt;span class=&quot;nv&quot;&gt;$conda&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; conda-forge compilers
+&lt;span class=&quot;nv&quot;&gt;$conda&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; conda-forge valgrind
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;example-program&quot;&gt;Example Program&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&quot;language-C++&quot;&gt;int main()
+{
+    auto x = new char[10];
+    delete x;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This innocuous looking program is actually ill-formed. The reason being, with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new[]&lt;/code&gt; allocation the allocated memory should be freed with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;delete[]&lt;/code&gt;, with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;delete&lt;/code&gt; the behavior is undefined.&lt;/p&gt;
+
+&lt;h3 id=&quot;building-the-program&quot;&gt;Building the program&lt;/h3&gt;
+&lt;p&gt;Let’s build with most of the compiler warnings enabled to see if our compiler can foresee this issue and warn us.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;g++ example.cc &lt;span class=&quot;nt&quot;&gt;-Wall&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Wpedantic&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Werror&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Wextra&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;On running the following, we get a shiny new executable without any warnings.&lt;/p&gt;
+
+&lt;h3 id=&quot;running-under-valgrind&quot;&gt;Running under Valgrind&lt;/h3&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$valgrind --tool=memcheck ./a.out
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here we are asking Valgrind to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;memcheck&lt;/code&gt; on our binary. There are more tools and options which can be specified.&lt;/p&gt;
+
+&lt;p&gt;On running the above command, we get the following output.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;==19750== Memcheck, a memory error detector
+==19750== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19750== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==19750== Command: ./a.out
+==19750== 
+==19750== Mismatched free() / delete / delete []
+==19750==    at 0x403713B: operator delete(void*, unsigned long) (vg_replace_malloc.c:595)
+==19750==    by 0x1091AD: main (in /home/user/Desktop/Repositories/valgrind-test/a.out)
+==19750==  Address 0x51ccc80 is 0 bytes inside a block of size 10 alloc'd
+==19750==    at 0x40365AF: operator new[](unsigned long) (vg_replace_malloc.c:433)
+==19750==    by 0x109193: main (in /home/user/Desktop/Repositories/valgrind-test/a.out)
+==19750== 
+==19750== 
+==19750== HEAP SUMMARY:
+==19750==     in use at exit: 0 bytes in 0 blocks
+==19750==   total heap usage: 2 allocs, 2 frees, 72,714 bytes allocated
+==19750== 
+==19750== All heap blocks were freed -- no leaks are possible
+==19750== 
+==19750== For lists of detected and suppressed errors, rerun with: -s
+==19750== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Mismatched free() / delete / delete []&lt;/code&gt;. The message tells us that we have a mismatched &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;free() / delete / delete []&lt;/code&gt; for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new[]&lt;/code&gt;. Valgrind is able to detect this as it does the booking keeping of the instruction it executed, instructions which requested memory and instructions which freed it.&lt;/p&gt;
+
+&lt;h2 id=&quot;caveats&quot;&gt;Caveats&lt;/h2&gt;
+&lt;p&gt;Since Valgrind emulates the hardware and does more tracking and bookkeeping, running a program under Valgrind is much slower.&lt;/p&gt;
+
+&lt;p&gt;Valgrind’s site states&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;So what's the catch? The main one is that programs run significantly more slowly under Valgrind. Depending on which tool you use, the slowdown factor can range from 5--100. This slowdown is similar to that of similar debugging and profiling tools. But since you don't have to use Valgrind all the time, this usually isn't too much of a problem. The hours you'll save debugging will more than make up for it.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h2&gt;
+
+&lt;p&gt;All in all, Valgrind is worthwhile tool to catch bugs. Even though it is slow, it will cut down on the debugging time by a large margin.&lt;/p&gt;</content><author><name></name></author><category term="intro" /><summary type="html">Valgrind Valgrind is an useful tool if you are working with C/C++. It is a suite of multipurpose tools with varied functionality. It allows you to detect memory-leak, profile your code and more. One of the thing that it shines at is helping debugging trick memory bug.</summary></entry><entry><title type="html">Intro post for testing!</title><link href="http://localhost:4000/intro/2021/04/29/welcome.html" rel="alternate" type="text/html" title="Intro post for testing!" /><published>2021-04-29T12:26:49+05:30</published><updated>2021-04-29T12:26:49+05:30</updated><id>http://localhost:4000/intro/2021/04/29/welcome</id><content type="html" xml:base="http://localhost:4000/intro/2021/04/29/welcome.html">&lt;p&gt;Finally I have a personal site?!&lt;/p&gt;</content><author><name></name></author><category term="intro" /><summary type="html">Finally I have a personal site?!</summary></entry></feed>
