@@ -2,7 +2,7 @@
 layout: post
 title:  "Gentle Introduction to Valgrind!"
 date:   2021-04-29 14:14:49 +0530
-categories: intro
+categories: tools
 ---
 
 ## Valgrind
