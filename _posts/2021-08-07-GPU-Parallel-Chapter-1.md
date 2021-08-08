@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "GPU Parallel Programming: Chapter 1"
-date:   2021-07-17 14:14:49 +0530
+date:   2021-08-07 14:14:49 +0530
 categories: c++, cuda
 ---
 
