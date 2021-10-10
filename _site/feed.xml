@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-08-08T13:39:18+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hacker’s Getaway</title><subtitle>Rough slate</subtitle><author><name>Kshiteej</name><email>kshitijkalambarkar@gmail.com</email></author><entry><title type="html">GPU Parallel Programming: Chapter 1</title><link href="http://localhost:4000/c++,/cuda/2021/08/07/GPU-Parallel-Chapter-1.html" rel="alternate" type="text/html" title="GPU Parallel Programming: Chapter 1" /><published>2021-08-07T14:14:49+05:30</published><updated>2021-08-07T14:14:49+05:30</updated><id>http://localhost:4000/c++,/cuda/2021/08/07/GPU-Parallel-Chapter-1</id><content type="html" xml:base="http://localhost:4000/c++,/cuda/2021/08/07/GPU-Parallel-Chapter-1.html">&lt;h3 id=&quot;chapter-1-introduction-to-cpu-parallel-programming&quot;&gt;Chapter 1: Introduction to CPU Parallel Programming&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-10T15:26:05+05:30</updated><id>http://localhost:4000/feed.xml</id><title type="html">Hacker’s Getaway</title><subtitle>Rough slate</subtitle><author><name>Kshiteej</name><email>kshitijkalambarkar@gmail.com</email></author><entry><title type="html">Leadership</title><link href="http://localhost:4000/leadership,/management/2021/10/10/Leadership.html" rel="alternate" type="text/html" title="Leadership" /><published>2021-10-10T14:14:49+05:30</published><updated>2021-10-10T14:14:49+05:30</updated><id>http://localhost:4000/leadership,/management/2021/10/10/Leadership</id><content type="html" xml:base="http://localhost:4000/leadership,/management/2021/10/10/Leadership.html">&lt;h3 id=&quot;leadership&quot;&gt;Leadership&lt;/h3&gt;
+
+&lt;h4 id=&quot;what-is-leadership&quot;&gt;What is leadership?&lt;/h4&gt;
+
+&lt;p&gt;Leadership can be very simply defined as the making the decision and implementing those decision. To accomplish this
+you need to also be able to influence people (around/below/above) you.&lt;/p&gt;
+
+&lt;h4 id=&quot;leadership-vs-management&quot;&gt;Leadership vs Management&lt;/h4&gt;
+
+&lt;p&gt;Leadership is not necessarily about the authority or the title that a person has. 
+A person who is a manager maybe or may not be a leader in the sense of above definition.
+Similarly, a person who does not lead a team can be a leader. It is more about the leadership
+skills than mere position.&lt;/p&gt;
+
+&lt;h4 id=&quot;qualities-of-a-leader&quot;&gt;Qualities of a Leader&lt;/h4&gt;
+
+&lt;p&gt;This (blog)[https://hbr.org/2016/03/the-most-important-leadership-competencies-according-to-leaders-around-the-world] talks about the skills that
+a good leader has or should focus on. The skills are ranked based on the opinion of 195 leaders from around the world and different companies.
+One that stood out to me was openness. Being able to admit, I am wrong and being able to improve upon that is really a skill. It is not easy to
+accept one’s mistakes especially if someone lower than your current title points them out.&lt;/p&gt;
+
+&lt;h4 id=&quot;inclusiveness&quot;&gt;Inclusiveness&lt;/h4&gt;
+
+&lt;p&gt;Another quality is being inclusive. Being inclusive, is prior requirement for being able to admit one’s mistakes. What I mean by being inclusive here
+is that the person should try to include people while making and implementing a decision. Since, it is not possible to talk to every person, the leader
+should target to atleast to the sample of people which represent all the groups. The idea is to look past one’s perspective and to look at the bigger picture
+together. Including people also has the benefit that people feel responsible and ownership about the decision and strive harder to make sure that it is
+implemented successfuly.&lt;/p&gt;
+
+&lt;p&gt;There more to be a leader than this, but that’s it for today!!&lt;/p&gt;</content><author><name>Kshiteej</name><email>kshitijkalambarkar@gmail.com</email></author><category term="leadership," /><category term="management" /><summary type="html">Leadership</summary></entry><entry><title type="html">GPU Parallel Programming: Chapter 1</title><link href="http://localhost:4000/c++,/cuda/2021/08/07/GPU-Parallel-Chapter-1.html" rel="alternate" type="text/html" title="GPU Parallel Programming: Chapter 1" /><published>2021-08-07T14:14:49+05:30</published><updated>2021-08-07T14:14:49+05:30</updated><id>http://localhost:4000/c++,/cuda/2021/08/07/GPU-Parallel-Chapter-1</id><content type="html" xml:base="http://localhost:4000/c++,/cuda/2021/08/07/GPU-Parallel-Chapter-1.html">&lt;h3 id=&quot;chapter-1-introduction-to-cpu-parallel-programming&quot;&gt;Chapter 1: Introduction to CPU Parallel Programming&lt;/h3&gt;
 
 &lt;p&gt;The promise of Moore’s Law is dead (though not the Moore’s Law itself). The number of transistor’s on a chip are
 increasing every 2 years, but the frequency increase has hit wall due to power consumption and heating issues.
