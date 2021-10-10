@@ -9,7 +9,7 @@ categories: leadership, management
 
 #### What is leadership?
 
-Leadership can be very simply defined as the making the decision and implementing those decision. To accomplish this
+Leadership can be very simply defined as making the decision and implementing those decision. To accomplish this
 you need to also be able to influence people (around/below/above) you.
 
 
@@ -22,7 +22,7 @@ skills than mere position.
 
 #### Qualities of a Leader
 
-This (blog)[https://hbr.org/2016/03/the-most-important-leadership-competencies-according-to-leaders-around-the-world] talks about the skills that
+This [blog](https://hbr.org/2016/03/the-most-important-leadership-competencies-according-to-leaders-around-the-world) talks about the skills that
 a good leader has or should focus on. The skills are ranked based on the opinion of 195 leaders from around the world and different companies.
 One that stood out to me was openness. Being able to admit, I am wrong and being able to improve upon that is really a skill. It is not easy to
 accept one's mistakes especially if someone lower than your current title points them out. 
@@ -35,4 +35,4 @@ should target to atleast to the sample of people which represent all the groups.
 together. Including people also has the benefit that people feel responsible and ownership about the decision and strive harder to make sure that it is
 implemented successfuly.
 
-There more to be a leader than this, but that's it for today!!
+There is more to be a leader than this, but that's it for today!!
