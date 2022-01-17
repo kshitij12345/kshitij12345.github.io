@@ -39,7 +39,7 @@ about it's usage.
 
 Blogs:
   * [Quansight TensorIterator Update](https://labs.quansight.org/blog/2021/04/pytorch-tensoriterator-internals-update/index.html)
-  * https://labs.quansight.org/blog/2020/04/pytorch-tensoriterator-internals/
+  * [Quansight TensorIterator](https://labs.quansight.org/blog/2020/04/pytorch-tensoriterator-internals/)
 
 ### TensorIterator and CUDA
 
