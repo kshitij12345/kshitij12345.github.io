@@ -17,7 +17,7 @@ the developer only has to specify the `inputs` and `outputs` for the operator an
 TensorIterator also has extra checks and features to make sure `inputs` and `outputs` don't overlap, they are on same the `device`, they have same the `dtype`. It also takes care of type promotion if the correct flags are set.
 
 Example code using `TensorIterator` (from first blog reference)
-```C++
+```c++
 at::TensorIteratorConfig iter_config;
 iter_config
   .add_output(c)
