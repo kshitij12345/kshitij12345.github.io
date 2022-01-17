@@ -47,7 +47,7 @@ The existing machinery for using TensorIterator to generate CUDA Kernels of the 
 
 ### The JITerator
 
-The solution to these problems that the PyTorch maintainers Mike Rubbery and Natalia Gimelshein came up with was to use NVRTC (Runtime Compilation) library shipped with CUDA to delay the compilation and loading of these kernels. Another way to put it is,
+The solution to these problems that the PyTorch maintainers Mike Ruberry and Natalia Gimelshein came up with was to use NVRTC (Runtime Compilation) library shipped with CUDA to delay the compilation and loading of these kernels. Another way to put it is,
 we will not compile the kernel and load the corresponing kernel binary till the operator is called for the first. This way there is not a heavy upfront compilation cost and the operator kernel code is loaded in the GPU memory only if the operator is actually used.
 
 The way this conceptually works is when PyTorch is built it keeps the string representation of the kernel code which needs to be compiled when an operator is called. So when a user actually calls the operator, we check in cache if there is already an kernel available, if not NVRTC is utilized to generate kernel and load it for use. The address of this generated kernel is cached so that next time when is operator is called, we can use this compiled kernel. We will expand this idea in the following section and dive deeper into JITerator.
