@@ -43,14 +43,14 @@ Blogs:
 
 ### TensorIterator and CUDA
 
-The existing machinery for using TensorIterator to generate CUDA Kernels of the operation is really easy to use but there is one major caveat in the process. The helper functions like `cpu_kernel` and `gpu_kernel` which generate the kernel code for the operator are heavily templated. These templates are instantiated for all the dtypes that are supported by the operator and if a binary operator supports scalar argument, then two more kernels are instantiated per dtype for `Tensor-Scalar` and `Scalar-Tensor` case. This leads to a lot of increased build time especially for `nvcc` (CUDA AOT compiler). Also these kernels are compiled using CUDA Runtime API, which means that these kernels are loaded when PyTorch binary is loaded which increases the CUDA context size (which ends up consuming actual GPU VRAM). These issues became very apparent while adding new operators for `torch.special` module. A general user who didn't care about these operators had to actually pay the cost (in terms of GPU memory) for them when we loaded PyTorch with CUDA support.
+The existing machinery for using TensorIterator to generate CUDA Kernels of the operation is really easy to use but there is one major caveat in the process. The helper functions like `cpu_kernel` and `gpu_kernel` which generate the kernel code for the operator are heavily templated. These templates are instantiated for all the dtypes that are supported by the operator, based on whether the Tensors are contiguous or not and if a binary operator supports scalar argument, then two more kernels are instantiated per dtype for `Tensor-Scalar` and `Scalar-Tensor` case. This leads to a lot of increase in build time especially for `nvcc` (CUDA AOT compiler). Also these kernels are compiled using CUDA Runtime API, which means that these kernels are loaded when PyTorch binary is loaded increasing the CUDA context size (consuming actual GPU VRAM). These issues became very apparent while adding new operators for `torch.special` module. A user who didn't care about these operators had to actually pay the cost (in terms of GPU memory) when importing PyTorch with CUDA support.
 
 ### The JITerator
 
-The solution to these problems that the PyTorch maintainers Mike Ruberry and Natalia Gimelshein came up with was to use NVRTC (Runtime Compilation) library shipped with CUDA to delay the compilation and loading of these kernels. Another way to put it is,
-we will not compile the kernel and load the corresponing kernel binary till the operator is called for the first. This way there is not a heavy upfront compilation cost and the operator kernel code is loaded in the GPU memory only if the operator is actually used.
+The solution to these problems that the PyTorch maintainers Mike Ruberry and Natalia Gimelshein came up was to use NVRTC (Runtime Compilation) library shipped with CUDA to delay the compilation and loading of these kernels. Another way to put it,
+we will not compile the kernel and load the corresponing kernel binary till the operator is called for the first. This way there is no upfront compilation cost and the operator kernel code is loaded in the GPU memory only if the operator is actually used.
 
-The way this conceptually works is when PyTorch is built it keeps the string representation of the kernel code which needs to be compiled when an operator is called. So when a user actually calls the operator, we check in cache if there is already an kernel available, if not NVRTC is utilized to generate kernel and load it for use. The address of this generated kernel is cached so that next time when is operator is called, we can use this compiled kernel. We will expand this idea in the following section and dive deeper into JITerator.
+The way this conceptually works is when PyTorch is built, it keeps the string representation of the kernel code which needs to be compiled when an operator is called. So when a user actually calls the operator, we check in cache if there is already an kernel available, if not NVRTC is utilized to generate kernel and load it for use. The address of this generated kernel is cached so that next time when is operator is called, we can use this compiled kernel. We will expand this idea in the following section and dive deeper into JITerator.
 
 * How to use JITerator with TensorIterator
     * Computation String (`jiterator_stringify`)
@@ -62,8 +62,8 @@ The way this conceptually works is when PyTorch is built it keeps the string rep
     * `launch_jitted_unrolled_kernel` and `launch_jitted_vectorized_kernel`
 
 #### Computation String
-Let's take a look at how the said string looks in code. We will look at the implementation of the binary operator `gcd`. Below is the code for computing `gcd` of two numbers `a_in` and `b_in`.
-Do note that we code written doesn't look like string. This is because of the macro `jiterator_stringify` which converts the code to string using preprocessor capabilities. Thanks to this we don't loose out on syntax highlighting and the code still feels like code even if we are actually getting the string of the code in the variable `gcd_string`.
+Let's take a look at how the said computation string looks in code. We will look at the implementation of the binary operator `gcd`. Below is the code for computing `gcd` of two numbers `a_in` and `b_in`.
+Do note that we code written doesn't look like string. This is because of the macro `jiterator_stringify` which converts the code to string. Thanks to this we don't loose out on syntax highlighting and the code still feels like code even if we are actually getting the string of the code in the variable `gcd_string`.
 ```c++
 const auto gcd_string = jiterator_stringify(
   template <typename T>
@@ -108,11 +108,11 @@ void gcd_kernel_cuda(TensorIteratorBase& iter) {
 }
 ```
 
-`jitted_gpu_kernel` is the entry point for the JITerator. It takes the name of the kernel, return dtype, computation dtype and the number of input arguments as template parameter. It also takes the TensorIterator `iter` and the string for the computation `gcd_string` as run-time argument. At this point we are done with actually implementing the operator. When the operator is called `jitted_gpu_kernel` will take care of compiling the kernel and loading it for use.
+`jitted_gpu_kernel` is the entry point for the JITerator. It takes the name of the kernel, return dtype, computation dtype and the number of input arguments as template parameter. At runtime, it takes the TensorIterator `iter` and the string for the computation `gcd_string` as run-time argument. At this point we are done with actually implementing the CUDA operator kernel. When the operator is called, `jitted_gpu_kernel` will take care of compiling the kernel and loading it for use.
 
 ### [`jitted_gpu_kernel`](https://github.com/pytorch/pytorch/blob/a383d01774beb112e519ae6a5c560eb402c96a31/aten/src/ATen/native/cuda/Loops.cuh#L111-L113)
 
-As mentioned above, this is the entry point for JITerator. The relevant code is present in `aten/src/ATen/native/cuda/Loops.cuh`.
+As mentioned above, this is the entry point for JITerator. 
 
 Following is a simplified C++ pseudo-code
 
@@ -168,12 +168,9 @@ at::opmath_type<f_inputs_type> scalar_val=0) {
 }
 ```
 
-This function has some checks on `input`, `output` and figures out if we need the kernel requires dynamic casting. If the input size larger than one that can be handled by 32-bit indexing, we divide the input and output into 32-bit indexable blocks and call this function recursively. Post this the function calls `jitted_gpu_kernel_impl`.
+This function does a few checks on `input`, `output` and figures out if the computation requires dynamic casting. Also, if the input size is larger than which can be handled by 32-bit indexing, we divide the input and output into 32-bit indexable blocks and call this function recursively. Post this it calls `jitted_gpu_kernel_impl`.
 
 ### [`jitted_gpu_kernel_impl`](https://github.com/pytorch/pytorch/blob/a383d01774beb112e519ae6a5c560eb402c96a31/aten/src/ATen/native/cuda/CUDALoops.cuh#L279-L281)
-This function is located in 
-
-Below is the actual C++ code
 
 ```c++
 template <char const *name, typename result_type, typename compute_type, int arity,
@@ -253,18 +250,18 @@ void jitted_gpu_kernel_impl(TensorIteratorBase& iter, const std::string& f, cons
 
 ```
 
-The above function all it does if figure out the memory layout of the input and output tensor and adds extra machinery if they are non-contiguous and if dynamic casting is required (computed in `jitted_gpu_kernel`). Post that it passes the computed data to either `launch_jitted_unrolled_kernel` and `launch_jitted_vectorized_kernel`
+`jitted_gpu_kernel_impl` figures out the memory layout of the input and output tensor and adds extra machinery if they are non-contiguous and if dynamic casting is required (computed in `jitted_gpu_kernel`). Post that it passes the computed data to either `launch_jitted_unrolled_kernel` and `launch_jitted_vectorized_kernel`
 
 ### NVRTC JIT utility helpers
 
-Before we look at `launch_jitted_vectorized_kernel` or `launch_jitted_unrolled_kernel`, let's take a quick understanding at the JIT utility that they call.
+Before we look at `launch_jitted_vectorized_kernel` or `launch_jitted_unrolled_kernel`, let's take a quick look at the JIT utility functions that they call.
 
 These utility functions are declared in `aten/src/ATen/native/cuda/jit_utils.h` [file](https://github.com/pytorch/pytorch/blob/master/aten/src/ATen/native/cuda/jit_utils.h) and defined in `aten/src/ATen/native/cuda/jit_utils.cu` [file](https://github.com/pytorch/pytorch/blob/master/aten/src/ATen/native/cuda/jit_utils.cu)
 
 Important utility helpers to know about
-* `generate_code` : This function takes the computation string and wraps it in a `string` with the required machinery of reading from input, passing that data to kernel and writing to the output. It also returns a `string`.
+* `generate_code` : This function takes the computation string and wraps it in a `string` with the required machinery of reading from input, passing that data to kernel and writing to the output. Output of this function is the string for the actual kernel which will be compiled by NVRTC. It also returns a `string`.
 
-* `jit_vectorized_code_template` and `jit_code_template` : These strings are used to wrap the actual computation string to create the actual kerel. These take care of efficiently loading and storing the input and output tensor and calling our computation code on them.
+* `jit_vectorized_code_template` and `jit_code_template` : These strings are used to wrap the actual computation string and to create the actual kernel string. These take care of efficiently loading and storing the input and output tensor and calling the computation code on them.
 
 * `jit_pwise_function`: This function takes in the string generated from `generate_code` and kernel name. It uses `NVRTC` functions to compile the code and load that compiled code into the GPU VRAM and return pointer to the kernel function pointer for calling.
 
@@ -368,8 +365,8 @@ at::opmath_type<f_inputs_type> scalar_val) {
 }
 ```
 
-Once we enter the function we check our cache `fns4/fns2/fns1` to get the pointer to kernel function if it exists. If it doesn't we use the utilities we looked at above. `generate_code` is called with our computation string to generate the actual kernel code.
-`jit_pwise_function` is called to actually compile and get the function pointer to this kernel. Notice that we use the vectorized kernel if possible in `launch_jitted_vectorized_kernel`. We update our cache pointer with to point to this kernel and use `launch_jitted_pwsie_function` from JIT utility to launch this kernel with the input and output. Once the kernel is launched, the computation happens on GPU and we get the output and user is happy.
+Once we enter the function, we check our cache `fns4/fns2/fns1` to get the pointer to kernel function if it exists. If it doesn't we use the utilities we looked at above. `generate_code` is called with our computation string to generate the actual kernel code.
+`jit_pwise_function` is called to compile and get the function pointer to this kernel. Notice that we use the vectorized kernel if possible in `launch_jitted_vectorized_kernel`. We update our cache pointer with to point to this kernel and use `launch_jitted_pwsie_function` from JIT utility to launch this kernel with the relevant kernel args and input-output data. Once the kernel is launched, the computation happens on GPU, output is computed and user is happy.
 
 On next run of the operator, the pointer from the cache will be valid and we will directly use it instead of compiling the code again.
 
