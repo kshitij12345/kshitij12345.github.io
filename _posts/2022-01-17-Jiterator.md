@@ -38,8 +38,8 @@ For more details on `TensorIterator` one can refer the following blogs which get
 about it's usage.
 
 Blogs:
-  * https://labs.quansight.org/blog/2021/04/pytorch-tensoriterator-internals-update/index.html
-  * https://labs.quansight.org/blog/2020/04/pytorch-tensoriterator-internals/
+  * [Quansight TensorIterator Update](https://labs.quansight.org/blog/2021/04/pytorch-tensoriterator-internals-update/index.html)
+  * [Quansight TensorIterator](https://labs.quansight.org/blog/2020/04/pytorch-tensoriterator-internals/)
 
 ### TensorIterator and CUDA
 
