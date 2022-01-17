@@ -58,7 +58,8 @@ The way this conceptually works is when PyTorch is built it keeps the string rep
 * Diving Deeper
     * `jitted_gpu_kernel`
     * `jitted_gpu_kernel_impl`
-    * 
+    * NVRTC JIT utility helpers
+    * `launch_jitted_unrolled_kernel` and `launch_jitted_vectorized_kernel`
 
 #### Computation String
 Let's take a look at how the said string looks in code. We will look at the implementation of the binary operator `gcd`. Below is the code for computing `gcd` of two numbers `a_in` and `b_in`.
