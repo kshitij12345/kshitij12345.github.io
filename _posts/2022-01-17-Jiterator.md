@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "JITerator"
+title:  "JITerator Internals"
 date:   2022-01-17 14:14:49 +0530
 categories: pytorch, cuda
 ---
