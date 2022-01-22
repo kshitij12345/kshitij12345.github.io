@@ -55,10 +55,10 @@ The way this works is when PyTorch is built, it keeps the string representation 
     * [Computation String](#computation-string) (`jiterator_stringify`)
     * [Generating the Kernel](#generating-the-kernel)
 * [Diving Deeper](#diving-deeper)
-    * [`jitted_gpu_kernel`](#`jitted_gpu_kernel`)
-    * `jitted_gpu_kernel_impl`
-    * NVRTC JIT utility helpers
-    * `launch_jitted_unrolled_kernel` and `launch_jitted_vectorized_kernel`
+    * [`jitted_gpu_kernel`](#jitted_gpu_kernel)
+    * [`jitted_gpu_kernel_impl`](#jitted_gpu_kernel_impl)
+    * [NVRTC JIT utility helpers](#nvrtc-jit-utility-helpers)
+    * [`launch_jitted_unrolled_kernel` and `launch_jitted_vectorized_kernel`](#launch_jitted_unrolled_kernel-and-launch_jitted_vectorized_kernel)
 
 ### Computation String
 Let us take a look at how the said computation string looks in code. We will look at the implementation of the binary operator `gcd`. Below is the code for computing `gcd` of two numbers `a_in` and `b_in`.
