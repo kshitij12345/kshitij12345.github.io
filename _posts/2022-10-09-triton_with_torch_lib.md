@@ -11,6 +11,8 @@ PyTorch is one of the prominent Deep Learning Frameworks. It ships with a lot of
 
 In this blog, we are going to try `Triton`, a Python Framework, which helps us to write efficient CUDA kernels at runtime and use them to improve our performance. We will then use this `Triton` kernel to override one of the existing operator kernel in PyTorch. Thus we don't have to write our model code any different (from the PyTorch API) and yet we will see performance boost.
 
+Link to Colab Notebook: https://colab.research.google.com/github/kshitij12345/kshitij12345.github.io/blob/master/_jupyter/triton_with_torch_lib.ipynb
+
 ##### Dependencies
 
 ```python
