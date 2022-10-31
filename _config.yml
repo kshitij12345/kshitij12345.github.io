@@ -33,6 +33,8 @@ minima:
     github: kshitij12345
     linkedin: kshiteejkalambarkar
 
+google_anayltics: G-NE81W5C9EV
+
 # Build settings
 remote_theme: jekyll/minima@3cdd14dff1216f561c68329e0b7420c2dc9b796a
 plugins:
