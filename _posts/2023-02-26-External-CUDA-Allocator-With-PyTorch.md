@@ -125,4 +125,4 @@ print(mr.allocation_counts)
 References:
 * [Issue requesting the feature](https://github.com/pytorch/pytorch/issues/43144)
 * [PyTorch PR adding the infrastructure](https://github.com/pytorch/pytorch/pull/86786)
-* [RMM](https://github.com/rapidsai/rmm/pull/1168)
+* [RMM PR adding support for integrating with PyTorch](https://github.com/rapidsai/rmm/pull/1168)
