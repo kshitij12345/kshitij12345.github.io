@@ -29,7 +29,7 @@ This [issue](https://github.com/pytorch/pytorch/issues/43144) regarding the supp
 * Counter argument for above point is that even with OOM from PyTorch, user still gets the impression that PyTorch is the problem.
 * It also discusses what the API for allocator should be and if there are any standard for this API.
 
-[Pull Request](https://github.com/pytorch/pytorch/pull/86786) by [emcastillo](https://github.com/emcastillo) from Preffered Network Inc. took care of fixing this issue by adding the necessary infrastructure to PyTorch. With this pull request user can now easily swap the CUDA allocator for PyTorch. However, one thing to note is that you can't swap an already initialized allocator (as it may have already allocated some memory).
+[Pull Request](https://github.com/pytorch/pytorch/pull/86786) by [emcastillo](https://github.com/emcastillo) from Preferred Networks took care of fixing this issue by adding the necessary infrastructure to PyTorch. With this pull request user can now easily swap the CUDA allocator for PyTorch. However, one thing to note is that you can't swap an already initialized allocator (as it may have already allocated some memory).
 
 #### API
 
