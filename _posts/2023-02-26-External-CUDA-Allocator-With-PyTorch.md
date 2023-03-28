@@ -120,7 +120,7 @@ print(mr.allocation_counts)
 
 * PyTorch now supports external allocators which confirm to the interface.
 * RMM provides an implementation compatible with PyTorch.
-* Users can now use multiple libraries which compute on GPU with tighters control on GPU memory.
+* Users can now use multiple libraries which compute on GPU with tighter control on GPU memory.
 
 References:
 * [Issue requesting the feature](https://github.com/pytorch/pytorch/issues/43144)
